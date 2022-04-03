@@ -1,14 +1,21 @@
 package com.example.navigationproject.ui.main
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.navigationproject.R
 import com.example.navigationproject.databinding.MainFragmentBinding
+import java.io.ByteArrayOutputStream
+import java.util.*
+
 
 class MainFragment : Fragment() {
 
@@ -39,41 +46,42 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+        val action =  MainFragmentDirections.mainToSecond()
+
         binding.button1.setOnClickListener {
-            //val outImage= binding.imageView1.drawable
-            val outImageID = binding.imageView1.tag //tag of the picture defined in xml file, will be parameter in mainToSecond()
+            val title1="Image 1"
+            val imageResId1 = R.drawable.android_image_1
 
-            val viewText1="Image 1"
-            val action: MainFragmentDirections.MainToSecond  =  MainFragmentDirections.mainToSecond(outImageID.toString())
-            action.setTitle(viewText1)
-            action.setResultImage(outImageID.toString())  //pass picture data to secondFragment by imageview tag id
-
+            action.setTitle(title1)
+            action.setResultImage(imageResId1)
 
             Navigation.findNavController(it).navigate(action)
 
+
         }
-/*
         binding.button2.setOnClickListener {
-            //val outImage= binding.imageView1.drawable.toString()
+            val title2="Image 2"
+            val imageResId2 = R.drawable.android_image_2
 
-            val viewText2="image 2"
-            val action: MainFragmentDirections.MainToSecond  =  MainFragmentDirections.mainToSecond()
-            action.setTitle(viewText2)
+            action.setTitle(title2)
+            action.setResultImage(imageResId2)
 
             Navigation.findNavController(it).navigate(action)
-
         }
+
 
         binding.button3.setOnClickListener {
-            //val outImage= binding.imageView1.drawable.toString()
+            val title3="Image 3"
+            val imageResId3 = R.drawable.android_image_3
 
-            val viewText3="image 3"
-            val action: MainFragmentDirections.MainToSecond  =  MainFragmentDirections.mainToSecond()
-            action.setTitle(viewText3)
+            action.setTitle(title3)
+            action.setResultImage(imageResId3)
 
             Navigation.findNavController(it).navigate(action)
-
-        }*/
+        }
     }
+
+
+
 
 }

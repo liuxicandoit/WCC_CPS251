@@ -25,6 +25,7 @@
             android:defaultValue="Title" />
         <argument
             android:name="resultImage"
-            app:argType="string" />
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

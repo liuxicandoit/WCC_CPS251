@@ -1,11 +1,14 @@
 package com.example.navigationproject
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.net.Uri
+import android.util.Base64
 import com.example.navigationproject.databinding.FragmentSecondBinding
 import com.example.navigationproject.databinding.MainFragmentBinding
 
@@ -54,9 +57,8 @@ class SecondFragment : Fragment() {
         super.onStart()
         arguments?.let {
             val args = SecondFragmentArgs.fromBundle(it)
-            binding.imageTitle.text = args.title
-            binding.imageViewSecond.tag= args.resultImage  // secondFragment received picture from args variable resultImage
-
+            binding.imageTitle.setText(args.title)
+            binding.imageViewSecond.setImageResource(args.resultImage)
 
         }
     }
