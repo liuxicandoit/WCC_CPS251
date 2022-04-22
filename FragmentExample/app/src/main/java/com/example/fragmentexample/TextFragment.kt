@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.fragmentexample.databinding.FragmentTextBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +22,9 @@ class TextFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var _binding: FragmentTextBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -29,12 +33,24 @@ class TextFragment : Fragment() {
         }
     }
 
+    fun changeTextProperties(fontsize: Int, text: String){
+        binding.textView2.textSize = fontsize.toFloat()
+        binding.textView2.text = text
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_text, container, false)
+        //return inflater.inflate(R.layout.fragment_text, container, false)
+        _binding = FragmentTextBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onDestroyView(){
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
